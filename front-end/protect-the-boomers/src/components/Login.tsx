@@ -10,8 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/CardHeader';
 import MaterialUiPhoneNumber from 'material-ui-phone-number';
-
-const loginApiUrl = "api/login";
+import { logIn } from '../server-api';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,34 +51,19 @@ const Login = () => {
     }
   }, [username, password]);
 
-  const handleLogin = () => {
-    fetch(
-      loginApiUrl,
-      {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({phone_number: username, password})
-      })
-    .then(
-      response => {
-        if (response.ok) {
-            let json = response.json();
-            setError(false);
-            setHelperText('Login was successful! Response: ' + json);
-        }
-        else if (response.status === 401) {
-          setError(true);
-          setHelperText('Incorrect phone number or password.');
-        } else {
-          setHelperText('Could not log in due to error contacting server.');
-        }
-      },
-      () => {
-        setHelperText('Could not log in due to error contacting server.');
-      });
+  const handleLogin = async () => {
+    let response = await logIn(username, password);
+    if (response.kind === "success") {
+        setError(false);
+        setHelperText('Login was successful! Session token: ' + response.session_token);
+    }
+    else if (response.kind === "invalid-credentials") {
+      setError(true);
+      setHelperText('Incorrect phone number or password.');
+    }
+    else {
+      setHelperText('Could not log in due to error contacting server.');
+    }
   };
 
   const handleKeyPress = (e:any) => {
