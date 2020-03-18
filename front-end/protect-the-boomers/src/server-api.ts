@@ -28,8 +28,8 @@ type LogInResponse = SuccessfulLogInResponse | ServerUnavailableResponse | Inval
 
 /**
  * Sends an HTTP POST request that lets the user log in.
- * @param phone_number 
- * @param password 
+ * @param phone_number The user's phone number.
+ * @param password The user's password.
  */
 export async function logIn(phone_number: string, password: string): Promise<LogInResponse> {
     try {
