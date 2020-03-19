@@ -1,5 +1,2 @@
-cd "front-end"
-cd "protect-the-boomers"
-git add .
-git commit -m "Ejecting"
-npm run eject
+cd "flask-backend"
+python3 main.py

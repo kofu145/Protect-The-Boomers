@@ -28,7 +28,7 @@ def handle_invalid_usage(error):
 
 @app.route('/', methods=['GET'])
 def hello_world():
-  return "Api test"
+  return flask.render_template("index.html", token = "Hello Flask+React")
 
 accounts = [
   {
