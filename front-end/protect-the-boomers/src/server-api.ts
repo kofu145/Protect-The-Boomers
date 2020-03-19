@@ -1,6 +1,6 @@
 type SessionToken = string;
 
-const loginApiUrl = "api/login";
+const loginApiUrl = "https://website-testing-flask.kofu1452.repl.co/api/login";
 
 /**
  * A type for successful login responses.
