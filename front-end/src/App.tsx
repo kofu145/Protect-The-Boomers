@@ -39,7 +39,6 @@ function AppRouter(){
         </ul>
       </nav> */}
       <Route path="/" exact component={App} />
-      <p>My Token = {window.token}</p>
     </div>
   </Router>);
 }

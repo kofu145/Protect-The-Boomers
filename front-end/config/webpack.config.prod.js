@@ -36,8 +36,8 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 
 // Create two seperate files for css and cssmodules this allow for
 // different settings to be used with ExtractTextPlugin.
-const cssFilename = 'css/[name].[contenthash:8].css';
-const cssModulesFilename = 'css/[name]-cssmodules.[contenthash:8].css';
+const cssFilename = 'static/css/[name].[contenthash:8].css';
+const cssModulesFilename = 'static/css/[name]-cssmodules.[contenthash:8].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -79,8 +79,8 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+    filename: 'static/js/[name].[chunkhash:8].js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -156,7 +156,7 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              name: 'media/[name].[hash:8].[ext]',
+              name: 'static/media/[name].[hash:8].[ext]',
             },
           },
           // Process JS with Babel.
@@ -285,7 +285,7 @@ module.exports = {
             // by webpacks internal loaders.
             exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
             options: {
-              name: 'media/[name].[hash:8].[ext]',
+              name: 'static/media/[name].[hash:8].[ext]',
             },
           },
           // ** STOP ** Are you adding a new loader?
@@ -317,7 +317,6 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
-      filename: "../../templates/index.html"
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
